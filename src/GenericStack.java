@@ -7,27 +7,29 @@ import java.util.Arrays;
  * @param <T> The type of elements stored in the stack.
  */
 public class GenericStack<T> {
-    private Object[] elements;
+    private T[] elements;
     private int size;
     private int capacity;
 
     /**
      * Default constructor with a default capacity of 10.
      */
+    @SuppressWarnings("unchecked")
     public GenericStack() {
         this.capacity = 10;
         this.size = 0;
-        this.elements = new Object[this.capacity];
+        this.elements = (T[]) new Object[capacity];
     }
 
     /**
      * Constructor that allows setting a custom stack size.
      * @param capacity The maximum number of elements the stack can hold.
      */
+    @SuppressWarnings("unchecked")
     public GenericStack(int capacity) throws IllegalArgumentException {
         if (capacity <= 0) throw new IllegalArgumentException("Capacity must be greater than 0");
         this.capacity = capacity;
-        this.elements = new Object[capacity];
+        elements = (T[]) new Object[capacity];
         this.size = 0;
     }
 
@@ -63,7 +65,7 @@ public class GenericStack<T> {
      * @throws StackEmptyException If the stack is empty.
      */
     public T peek() throws StackEmptyException {
-        if (size == 0) {
+        if (isEmpty()) {
             throw new StackEmptyException("Stack is empty, cannot peek.");
         }
         return (T) elements[size - 1];

@@ -1,10 +1,17 @@
 package src;
+
+/**
+ * Testklasse
+ * @author fschenk
+ * @version 02.28.2025
+ */
+
 public class StackTest {
     public static void main(String[] args) {
         try {
             // Test stack with integers
             System.out.println("Testing Integer Stack:");
-            GenericStack<Integer> intStack = new GenericStack<>(5);
+            GenericStack<Integer> intStack = new GenericStack<>();
             intStack.push(10);
             intStack.push(20);
             intStack.push(30);
@@ -15,7 +22,7 @@ public class StackTest {
 
             // Test stack with strings
             System.out.println("\nTesting String Stack:");
-            GenericStack<String> stringStack = new GenericStack<>(3);
+            GenericStack<String> stringStack = new GenericStack<>();
             stringStack.push("Alice");
             stringStack.push("Bob");
             stringStack.push("Charlie");
@@ -26,12 +33,10 @@ public class StackTest {
 
             // Exception test - popping empty stack
             System.out.println("\nTesting StackEmptyException:");
-            GenericStack<Double> emptyStack = new GenericStack<>(2);
+            GenericStack<Double> emptyStack = new GenericStack<>();
             emptyStack.pop(); // Should throw exception
 
-        } catch (StackFullException e) {
-            System.err.println("Stack is full: " + e.getMessage());
-        } catch (StackEmptyException e) {
+        } catch (StackEmptyException | StackFullException e) {
             System.err.println("Stack is empty: " + e.getMessage());
         }
     }
